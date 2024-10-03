@@ -3,12 +3,12 @@ import mysql.connector as mysql
 class Register:
     def __init__(self):
         self.con = mysql.connect(host='localhost', username='root',
-                                 password='satyam10', database='quiz')
+                                 password='Oshristy123!', database='attemptQuiz')
         if self.con.is_connected() == True:
             print("Connected to database")
 
-    # TODO: unique username functionality for keep track of user and decrease the data duplicaticy.
-    # FIXME: this fuciton check that username is unique or not if it's not unique it give a warning that user is already exists or if username is not unique it gives a success message and the process will continue.
+    # unique username functionality for keep track of user and decrease the data duplicaticy.
+    # this fuciton check that username is unique or not if it's not unique it give a warning that user is already exists or if username is not unique it gives a success message and the process will continue.
 
     def unique_username(self, username):
         cursor = self.con.cursor()
@@ -21,8 +21,8 @@ class Register:
         else:
             return False
 
-    # TODO: Register functions start from here
-    # FIXME: new user can register for attempt quiz
+    # Register functions start from here
+    # new user can register for attempt quiz
 
     def register(self, userName, password, name, phoneNumber):
         try:
@@ -34,8 +34,8 @@ class Register:
         except mysql.Error as e:
             print("UserName is already exists")
 
-    # TODO: Login functions start from here
-    # FIXME: it works if username is already registered and password is set than its check the password and username of ther user and than you can login in and ready for attempt quiz
+    # Login functions start from here
+    # it works if username is already registered and password is set than its check the password and username of ther user and than you can login in and ready for attempt quiz
 
     def login(self, userName, password):
         cursor = self.con.cursor()
@@ -49,7 +49,7 @@ class Register:
             print("Wrong username or password")
             return False
 
-    # TODO: change password
+    # change password
     def change_password(self, userName, password):
         cursor = self.con.cursor()
         query = "update register set password=%s where userName=%s"
@@ -68,8 +68,8 @@ class Register:
             print(row)
         self.con.commit()
 
-    # TODO: Attempt quiz functions start from here
-    # FIXME: this fuction is for appear in the quiz
+    # Attempt quiz functions start from here
+    # this fuction is for appear in the quiz
 
     def attempt_quiz(self, username, password):
         if self.login(username, password) == False:
@@ -113,7 +113,7 @@ class Register:
         self.con.commit()
         print("successfully result updated")
 
-    # TODO: Reulst of the quiz is display here
+    # Reulst of the quiz is display here
 
     def getQuizResults(self, username):
         cursor = self.con.cursor()
